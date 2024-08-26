@@ -1,4 +1,3 @@
-// import { readSpreadValues } from '../core/spotrateDB.js';
 import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore.js";
 import { app } from '../../../config/db.js';
 
@@ -64,38 +63,35 @@ async function fetchData() {
         silverLow = silverData.low;
         silverBuy = (value2 + silverBidSpread).toFixed(2);
         silverSell = (value2 + silverBidSpread + silverAskSpread + parseFloat(0.5)).toFixed(2);
-
-
-
     });
 
-    var goldBuyUSD = (goldBuy ? goldBuy : '2512.36' / 31.103).toFixed(4);
+    var goldBuyUSD = (goldBuy / 31.103).toFixed(4);
     goldBiddingPrice = (goldBuyUSD * 3.674).toFixed(4);
 
-    var goldSellUSD = (goldSell ? goldSell : '2512.58' / 31.103).toFixed(4);
+    var goldSellUSD = (goldSell / 31.103).toFixed(4);
     goldAskingPrice = (goldSellUSD * 3.674).toFixed(4);
 
-    var silverBuyUSD = (silverBuy ? silverBuy : '29.823' / 31.103).toFixed(4);
+    var silverBuyUSD = (silverBuy / 31.103).toFixed(4);
     silverBiddingPrice = (silverBuyUSD * 3.674).toFixed(4);
 
-    var silverSellUSD = (silverSell ? silverSell : '29.879' / 31.103).toFixed(4);
+    var silverSellUSD = (silverSell / 31.103).toFixed(4);
     silverAskingPrice = (silverSellUSD * 3.674).toFixed(4);
 }
 
 // Function to Fetch Gold API Data
 async function fetchData1() {
     try {
-        var currentGoldBuy = goldBuy ? goldBuy : '2512.36';
-        var currentGoldSell = goldSell ? goldSell : '2512.58';
-        var currentSilverBuy = silverBuy ? silverBuy : '29.823';
-        var currentSilverSell = silverSell ? silverSell : '29.879';
+        var currentGoldBuy = goldBuy;
+        var currentGoldSell = goldSell;
+        var currentSilverBuy = silverBuy;
+        var currentSilverSell = silverSell;
 
 
         function updatePrice() {
-            var newGoldBuy = goldBuy ? goldBuy : '2512.36';
-            var newGoldSell = goldSell ? goldSell : '2512.58';
-            var newSilverBuy = silverBuy ? silverBuy : '29.823';
-            var newSilverSell = silverSell ? silverSell : '29.879';
+            var newGoldBuy = goldBuy;
+            var newGoldSell = goldSell;
+            var newSilverBuy = silverBuy;
+            var newSilverSell = silverSell;
 
             var element1 = document.getElementById("goldInputLow");
             var element2 = document.getElementById("goldInputHigh");
@@ -182,10 +178,10 @@ async function fetchData1() {
 
         updatePrice();
 
-        document.getElementById("lowLabelGold").innerHTML = goldLow ? goldLow : '2484.72';
-        document.getElementById("highLabelGold").innerHTML = goldHigh ? goldHigh : '2517.91';
-        document.getElementById("lowLabelSilver").innerHTML = silverLow ? silverLow : '28.937';
-        document.getElementById("highLabelSilver").innerHTML = silverHigh ? silverHigh : '29.879';
+        document.getElementById("lowLabelGold").innerHTML = goldLow;
+        document.getElementById("highLabelGold").innerHTML = goldHigh;
+        document.getElementById("lowLabelSilver").innerHTML = silverLow;
+        document.getElementById("highLabelSilver").innerHTML = silverHigh;
 
         // var element;
 
